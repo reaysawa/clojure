@@ -7,11 +7,11 @@
 	  accumulator_map
 	  (let [[first_remaining & remaining_maps] remaining_maps
 			to_be_merged (map (fn [[k v]] (if (contains? accumulator_map k)
-											; apply the function to the map
-											[k (function (get accumulator_map k) v)]
-											; the key is not created so just assoc it into the map
-											[k v]))
-							  first_remaining)
+							; apply the function to the map
+							[k (function (get accumulator_map k) v)]
+							; the key is not created so just assoc it into the map
+							[k v]))
+					  first_remaining)
 			new_map (reduce-kv #(assoc %1 %2 %3) accumulator_map (into {} to_be_merged))]
 		(recur new_map remaining_maps))))
   )
